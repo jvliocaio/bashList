@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  postgres:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: todo_list
+    #restart: always
+    environment:
+      POSTGRES_DB: todo_list
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - 5432:5432
+#    volumes:
+#     - pg_data:/var/lib/postgresql/data/
+    networks:
+     - todo
+networks:
+  todo:
+    external: 
+      name: todo
